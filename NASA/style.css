@@ -401,12 +401,16 @@ html {
 }
 
 /* Mobile Responsiveness */
-@media (max-width: 768px) {
+@media (max-width: 768px) and (max-width: 575px) {
     .navbar {
         margin-right: auto;
     }
 
     .navbar-toggler {
         margin-left: auto; /* Move toggle button to the right */
+    }
+    .navbar-nav .nav-link {
+        margin-top: 20px;
+        font-size: 0.95em;
     }
 }

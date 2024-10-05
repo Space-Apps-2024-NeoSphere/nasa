@@ -401,6 +401,7 @@ html {
     }
     .navbar-nav .nav-link {
         margin-top: 20px;
+        font-size: 0.95em;
     }
 }
 
