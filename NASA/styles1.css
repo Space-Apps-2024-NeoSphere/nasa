@@ -110,6 +110,8 @@ html {
 
 .card {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 100%;
+    border-radius: 20px;
     text-decoration: none; /* Remove underline from the text */
     color: inherit; /* Inherit text color from parent */
 }
@@ -119,6 +121,8 @@ html {
     color: black;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
+
+
 
 /* Chatbot button container */
 .chatbot-container {
@@ -135,9 +139,9 @@ html {
     border-radius: 50%;
     height: 60px;
     padding: 15px;
-    cursor: pointer;
     color: white;
     font-size: 24px;
+    cursor: pointer;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 

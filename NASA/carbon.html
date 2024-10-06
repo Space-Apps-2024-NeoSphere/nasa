@@ -208,10 +208,11 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav ml-auto">
-                <a class="nav-item nav-link btn btn-outline-light ml-2" href="SDG.html">Home</a>
-                <a class="nav-item nav-link btn btn-outline-light ml-2 active" href="SDGgoals.html">Goals</a>
-                <a class="nav-item nav-link btn btn-outline-light ml-2" href="#">Login</a>
-                <a class="nav-item nav-link btn btn-outline-light ml-2" href="#">Sign Up</a>
+                <a style="border: 0; padding-left: 25px; padding-right: 25px;" class="nav-item nav-link btn btn-outline-light ml-2" href="SDG.html">Home</a>
+                <a style="border: 0; padding-left: 25px; padding-right: 25px;" class="nav-item nav-link btn btn-outline-light ml-2" href="SDGgoals.html">Goals</a>
+                <a style="border: 0; padding-left: 25px; padding-right: 25px;" class="nav-item nav-link btn btn-outline-light ml-2" href="SDGevents.html">Events</a>
+                <a style="border: 0; padding-left: 25px; padding-right: 25px;" class="nav-item nav-link btn btn-outline-light ml-2" href="#">Login</a>
+                <a style="border: 0; padding-left: 25px; padding-right: 25px;" class="nav-item nav-link btn btn-outline-light ml-2" href="#">Sign Up</a>
             </div>
         </div>
     </nav>
@@ -256,83 +257,81 @@
     </div>
 
     <!-- Video Modal -->
-<div class="modal fade" id="videoModal" tabindex="-1" role="dialog" aria-labelledby="videoModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="videoModalLabel">Watch Video</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <video id="myVideo" width="100%" height="400" controls>
-                    <source src="1.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
+    <div class="modal fade" id="videoModal" tabindex="-1" role="dialog" aria-labelledby="videoModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="videoModalLabel">Watch Video</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <video id="videoPlayer" width="100%" height="400" controls>
+                        <source src="1.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<!-- Quiz Modal -->
-<div class="modal fade" id="quizModal" tabindex="-1" role="dialog" aria-labelledby="quizModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="quizModalLabel">Pop Quiz!</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p>What is the main topic of the video?</p>
-                <form id="quizForm">
-                    <div class="form-group">
-                        <label><input type="radio" name="answer" value="A"> A) Climate Change</label><br>
-                        <label><input type="radio" name="answer" value="B"> B) Renewable Energy</label><br>
-                        <label><input type="radio" name="answer" value="C"> C) Carbon Footprint Reduction</label><br>
-                        <label><input type="radio" name="answer" value="D"> D) Pollution</label><br>
+    <!-- Quiz Modal -->
+    <div class="modal fade" id="quizModal" tabindex="-1" role="dialog" aria-labelledby="quizModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="quizModalLabel">Quiz</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p id="quizQuestion">What is the main topic of the video?</p>
+                    <div>
+                        <button class="btn btn-primary" onclick="checkAnswer('wrong')">A) Climate Change</button>
+                        <button class="btn btn-primary" onclick="checkAnswer('wrong')">B) Renewable Energy</button>
+                        <button class="btn btn-primary" onclick="checkAnswer('correct')">C) Carbon Footprint Reduction</button>
+                        <button class="btn btn-primary" onclick="checkAnswer('wrong')">D) Pollution</button>
                     </div>
-                    <button type="button" class="btn btn-primary" onclick="submitQuiz()">Submit</button>
-                </form>
+                    <p id="quizFeedback" style="margin-top: 20px;"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="close()">Submit</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<script>
-    // Show quiz modal at halfway point and end of video
-    const video = document.getElementById("myVideo");
-    const quizModal = $("#quizModal");
-    
-    // Event listener for video time updates
-    video.addEventListener('timeupdate', function() {
-        const duration = video.duration;
-        const currentTime = video.currentTime;
+    <script>
+        const videoPlayer = document.getElementById('videoPlayer');
+        const halfwayMark = videoPlayer.duration / 2; // Get the halfway point of the video
 
-        // Show quiz at halfway point
-        if (currentTime >= duration / 2 && currentTime < duration / 2 + 1) {
-            quizModal.modal('show');
+        // Show the quiz at halfway point
+        videoPlayer.addEventListener('timeupdate', function() {
+            if (videoPlayer.currentTime >= halfwayMark && !videoPlayer.dataset.halfwayQuizShown) {
+                videoPlayer.pause();
+                videoPlayer.dataset.halfwayQuizShown = true; // Prevent showing quiz multiple times
+                $('#quizModal').modal('show');
+            }
+        });
+
+        // Show quiz at the end of the video
+        videoPlayer.addEventListener('ended', function() {
+            videoPlayer.pause();
+            $('#quizModal').modal('show');
+            videoPlayer.dataset.halfwayQuizShown = true; // Prevent showing halfway quiz again
+        });
+
+        function checkAnswer(answer) {
+            const feedback = document.getElementById('quizFeedback');
+            if (answer === 'correct') {
+                feedback.textContent = "Correct! The answer is Carbon Footprint Reduction.";
+            } else {
+                feedback.textContent = "Incorrect.";
+            }
         }
-
-        // Show quiz at the end
-        if (currentTime >= duration - 1 && currentTime < duration) {
-            quizModal.modal('show');
-        }
-    });
-
-    // Function to handle quiz submission
-    function submitQuiz() {
-        const selectedOption = document.querySelector('input[name="answer"]:checked');
-        if (selectedOption) {
-            alert(`You selected: ${selectedOption.value}`);
-            $('#quizModal').modal('hide');
-        } else {
-            alert('Please select an answer!');
-        }
-    }
-</script>
+    </script>
 
     <!-- PPT Modal -->
 <div class="modal fade" id="pptModal" tabindex="-1" role="dialog" aria-labelledby="pptModalLabel" aria-hidden="true">
