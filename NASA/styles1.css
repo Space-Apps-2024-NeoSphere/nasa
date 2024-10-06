@@ -119,3 +119,68 @@ html {
     color: black;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
+
+/* Chatbot button container */
+.chatbot-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+/* Chatbot button */
+.chatbot-btn {
+    background-color: #4CAF50; /* Customize as needed */
+    border: none;
+    border-radius: 50%;
+    height: 60px;
+    padding: 15px;
+    cursor: pointer;
+    color: white;
+    font-size: 24px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.chat-icon {
+    width: 30px;
+    height: 30px;
+}
+
+/* Chat popup box */
+.chat-popup {
+    display: none;
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: white;
+    z-index: 1000;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+/* Chat popup header */
+.chat-header {
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Chat popup body */
+.chat-body {
+    padding: 15px;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+/* Close button */
+.close-chat {
+    cursor: pointer;
+    font-size: 20px;
+}

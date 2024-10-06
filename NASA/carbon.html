@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video with Pop-up Quizzes</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="style2.css">
+</head>
+<body>
+    <div class="chatbot-container">
+        <button class="chatbot-btn" onclick="openChat()">
+            <i class="fas fa-comments"></i>
+        </button>
+    </div>
+    
+      
+      <div id="chatPopup" class="chat-popup">
+        <!-- Chat content goes here -->
+        <div class="chat-header">
+          <h4>Chat with us</h4>
+          <span class="close-chat" onclick="closeChat()">&times;</span>
+        </div>
+        <div class="chat-body">
+          <!-- Add your chat interface here -->
+          <p>How can we help you today?</p>
+        </div>
+      </div>
+      
+    <div class="video-container">
+        <video id="myVideo" width="600" controls>
+            <source src="your-video.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+    <!-- Pop-up Quiz 1 -->
+    <div id="quiz1" class="quiz-popup">
+        <div class="quiz-content">
+            <h3>Quiz Question 1</h3>
+            <p>What is the capital of France?</p>
+            <button onclick="checkAnswer('A', 'quiz1')">A) Paris</button>
+            <button onclick="checkAnswer('B', 'quiz1')">B) London</button>
+            <button onclick="checkAnswer('C', 'quiz1')">C) Rome</button>
+        </div>
+    </div>
+
+    <!-- Pop-up Quiz 2 -->
+    <div id="quiz2" class="quiz-popup">
+        <div class="quiz-content">
+            <h3>Quiz Question 2</h3>
+            <p>Which planet is closest to the sun?</p>
+            <button onclick="checkAnswer('A', 'quiz2')">A) Venus</button>
+            <button onclick="checkAnswer('B', 'quiz2')">B) Mercury</button>
+            <button onclick="checkAnswer('C', 'quiz2')">C) Mars</button>
+        </div>
+    </div>
+    <script>
+        function openChat() {
+          document.getElementById("chatPopup").style.display = "block";
+        }
+      
+        function closeChat() {
+          document.getElementById("chatPopup").style.display = "none";
+        }
+      </script>
+    <script src="script.js"></script>
+</body>
+</html>
